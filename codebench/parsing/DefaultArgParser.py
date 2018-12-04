@@ -45,7 +45,11 @@ Empower developers with tools to trace and analyze project performances.
     baseline_group = arg_parser.add_argument_group('Baseline')
 
     baseline_group.add_argument(
-        '-l', '--baseline', type=str, nargs=1,
+        '-g', '--git_folder', type=PathArg,
+        help='git folder for your project')
+
+    baseline_group.add_argument(
+        '-l', '--baseline', type=str,
         help='Commit hash for the baseline')
 
     return arg_parser
