@@ -1,0 +1,2 @@
+def checkout(hash):
+    pass
