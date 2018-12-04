@@ -19,7 +19,7 @@ def main():
     values = []
     for x in range(10000):
         values.append(random.randint(1, 10000))
-    bubble_sort(values)
+    quick_sort(values)
 
 
 if __name__ == '__main__':
