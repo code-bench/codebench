@@ -1,7 +1,7 @@
 import subprocess
 
 from codebench.parsing.DefaultArgParser import default_arg_parser
-from codebench.performance.Reporter import Reporter
+from codebench.performance.Runner import Runner
 from codebench.git import GitHandler
 
 
@@ -25,13 +25,13 @@ def main():
 
     for commit in commits:
         git_handler.checkout(commit)
-        r = Reporter(start_script)
+        r = Runner(start_script)
         r.run()
 
     if args.baseline:
         # run benchmark using baseline commit
         git_handler.checkout(args.baseline)
-        r = Reporter(start_script)
+        r = Runner(start_script)
         r.run()
 
     # reset back to head

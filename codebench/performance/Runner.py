@@ -24,7 +24,7 @@ def get_cpu_info(proc):
         return
 
 
-class Reporter:
+class Runner:
     def __init__(self, program):
         self.program = program
 
