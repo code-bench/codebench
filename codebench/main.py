@@ -25,10 +25,17 @@ def main():
         subprocess.call(args.before)
 
     start_script = args.start
-    run_benchmark(start_script)
+
+    git_handler = GitHandler(args.git_folder)
+
+    if args.commits:
+        for commit in args.commits:
+            git_handler.checkout(commit)
+            run_benchmark(start_script)
+    else:
+        run_benchmark(start_script)
 
     if args.baseline:
-        git_handler = GitHandler(args.git_folder)
         # run benchmark using baseline commit
         git_handler.checkout(args.baseline)
         run_benchmark(start_script)

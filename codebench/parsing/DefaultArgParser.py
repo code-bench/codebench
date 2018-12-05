@@ -42,14 +42,18 @@ Empower developers with tools to trace and analyze project performances.
         '-s', '--start', type=PathArg, nargs=1, metavar='FILE',
         required=True, help='benchmark script to be run')
 
-    baseline_group = arg_parser.add_argument_group('Baseline')
+    commits_group = arg_parser.add_argument_group('Commits')
 
-    baseline_group.add_argument(
+    commits_group.add_argument(
         '-g', '--git_folder', type=PathArg,
         help='git folder for your project')
 
-    baseline_group.add_argument(
+    commits_group.add_argument(
         '-l', '--baseline', type=str,
         help='Commit hash for the baseline')
+
+    commits_group.add_argument(
+        '-c', '--commits', type=str, nargs='+',
+        help='one or more commits you want to run benchmarks on')
 
     return arg_parser
