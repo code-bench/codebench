@@ -10,6 +10,7 @@ Automated code benchmark solution. Empower developers with tools to trace and an
 - specify commit range (instead of a list)
 - use configuration file (with parser maybe)
 - should monitor child processes
+- exception handling (should reset commit when encountering exception)
 
 ### DONE:
 - specify a list of commits, run benchmark
