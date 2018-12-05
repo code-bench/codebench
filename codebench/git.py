@@ -12,9 +12,10 @@ class GitHandler:
         """
         self.repo.head.reset(index=True, working_tree=True)
 
-    def checkout(self, commit):
-        self.repo.head.reference = commit
-        self._clean()
+    def checkout(self, commit=None):
+        if commit is not None:
+            self.repo.head.reference = commit
+            self._clean()
 
     def reset_head(self):
         self.repo.head.reference = self.head
