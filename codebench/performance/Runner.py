@@ -8,9 +8,9 @@ from codebench.performance.TimeUtilities import (
 )
 
 
-def get_cpu_info(proc):
+def get_cpu_usage(proc):
     """
-    get cpu info of the given process
+    get cpu usage of the given process
     :param proc: a psutil.Process instance
     :return: cpu usage info
     """
@@ -27,6 +27,7 @@ def get_cpu_info(proc):
 class Runner:
     def __init__(self, program):
         self.program = program
+        self.cpu_usage = None
 
     def _before(self):
         self.start_time = get_time()
@@ -45,7 +46,14 @@ class Runner:
             p = psutil.Process(proc.pid)
         except psutil.NoSuchProcess:
             print('no such process, maybe the process is finished')
+        cpu_usage_cnt = 0
+        cpu_usage_tot = 0
         while proc.poll() is None:
-            get_cpu_info(p)
+            res = get_cpu_usage(p)
+            if res is not None:
+                cpu_usage_tot += res
+                cpu_usage_cnt += 1
             print('pid=', proc.pid)
+        if cpu_usage_tot != 0:
+            self.cpu_usage = cpu_usage_tot / cpu_usage_cnt
         self._after()
