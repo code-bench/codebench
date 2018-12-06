@@ -56,4 +56,10 @@ Empower developers with tools to trace and analyze project performances.
         '-c', '--commits', type=str, nargs='+',
         help='one or more commits you want to run benchmarks on')
 
+    report_group = arg_parser.add_argument_group('Report')
+
+    report_group.add_argument(
+        '-t', '--report_type', type=str,
+        help='Reporter type.')
+
     return arg_parser

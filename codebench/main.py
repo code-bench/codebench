@@ -2,7 +2,7 @@ import subprocess
 
 from codebench.parsing.DefaultArgParser import default_arg_parser
 from codebench.performance.Runner import Runner
-from codebench.report.ChartReporter import ChartReporter
+from codebench.report.Factory import reporter_factory
 from codebench.git import GitHandler
 
 
@@ -18,7 +18,7 @@ def main():
 
     git_handler = GitHandler(args.git_folder)
 
-    chart_reporter = ChartReporter()
+    reporter = reporter_factory(args.report_type)
 
     # run benchmark on given commits or head
     if args.commits:
@@ -30,15 +30,15 @@ def main():
         git_handler.checkout(commit)
         r = Runner(start_script)
         r.run()
-        chart_reporter.add_result(commit, {'cpu_usage': r.cpu_usage})
+        reporter.add_result(commit, {'cpu_usage': r.cpu_usage})
 
     if args.baseline:
         # run benchmark using baseline commit
         git_handler.checkout(args.baseline)
         r = Runner(start_script)
         r.run()
-        chart_reporter.add_result('baseline', {'cpu_usage': r.cpu_usage})
+        reporter.add_result('baseline', {'cpu_usage': r.cpu_usage})
 
-    chart_reporter.generate_report()
+    reporter.generate_report()
     # reset back to head
     git_handler.reset_head()
