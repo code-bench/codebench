@@ -13,7 +13,7 @@ class ChartReporter(Reporter):
         memory_usage = []
         cpu_times = []
         for commit, result in self.results.items():
-            x_values.append(commit)
+            x_values.append(commit[:6] if len(commit) > 10 else commit)
             cpu_usage.append(round(result.get('cpu_usage'), 2))
             memory_usage.append(round(result.get('memory_usage'), 2))
             cpu_times.append(round(result.get('cpu_times'), 2))
