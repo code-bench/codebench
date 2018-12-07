@@ -30,14 +30,14 @@ def main():
         git_handler.checkout(commit)
         r = Runner(start_script)
         r.run()
-        reporter.add_result(commit, {'cpu_usage': r.cpu_usage})
+        reporter.add_result(commit, r.summary)
 
     if args.baseline:
         # run benchmark using baseline commit
         git_handler.checkout(args.baseline)
         r = Runner(start_script)
         r.run()
-        reporter.add_result('baseline', {'cpu_usage': r.cpu_usage})
+        reporter.add_result('baseline', r.summary)
 
     reporter.generate_report()
     # reset back to head

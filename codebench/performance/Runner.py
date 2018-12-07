@@ -57,6 +57,12 @@ class Runner:
         self.cpu_usage = None
         self.cpu_times = None
         self.memory_usage = None
+        self.summary = dict()
+
+    def _summarize(self):
+        self.summary['cpu_usage'] = self.cpu_usage
+        self.summary['memory_usage'] = self.memory_usage
+        self.summary['cpu_times'] = self.cpu_times
 
     def run(self):
         # a non-blocking call to start benchmarking
@@ -89,3 +95,5 @@ class Runner:
         if memory_usage_tot != 0:
             self.memory_usage = memory_usage_tot / memory_usage_cnt
         self.cpu_times = cpu_times
+
+        self._summarize()
