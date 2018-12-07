@@ -5,6 +5,9 @@ from codebench.performance.Runner import Runner
 from codebench.report.Factory import reporter_factory
 from codebench.git import GitHandler
 
+def reset_git_head(git_handler):
+    git_handler.reset_head()
+
 
 def main():
     args = default_arg_parser().parse_args()
@@ -27,18 +30,25 @@ def main():
         commits = ['head']
 
     for commit in commits:
-        git_handler.checkout(commit)
-        r = Runner(start_script)
-        r.run()
-        reporter.add_result(commit, r.summary)
+        try:
+            git_handler.checkout(commit)
+            r = Runner(start_script)
+            r.run()
+            reporter.add_result(commit, r.summary)
+        except Exception as e:
+            reset_git_head(git_handler)
+            raise e
 
     if args.baseline:
         # run benchmark using baseline commit
-        git_handler.checkout(args.baseline)
-        r = Runner(start_script)
-        r.run()
-        reporter.add_result('baseline', r.summary)
+        try:
+            git_handler.checkout(args.baseline)
+            r = Runner(start_script)
+            r.run()
+            reporter.add_result('baseline', r.summary)
+        except Exception as e:
+            reset_git_head(git_handler)
+            raise e
 
     reporter.generate_report()
-    # reset back to head
-    git_handler.reset_head()
+    reset_git_head(git_handler)
