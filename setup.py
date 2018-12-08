@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='codebench',
-    version='0.1',
+    version='0.0.1',
     author='Boxuan Li',
     author_email='liboxuan@connect.hku.hk',
     description='Automated code benchmark solution',
