@@ -1,5 +1,11 @@
-# codebench
-Automated code benchmark solution. Empower developers with tools to trace and analyze project performances.
+<p align="center">
+  <a href="https://github.com/li-boxuan/codebench">
+    <img src="https://user-images.githubusercontent.com/25746010/49685836-0ec63580-fb26-11e8-8c33-d8597319d15b.png" width=200>
+  </a>
+</p>
+
+<p align="center"><b>Automated code benchmark solution.</b></p>
+<p align="center">Empower developers with tools to trace and analyze project performances.</p>
 
 ## Sample Usage
 
