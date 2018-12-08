@@ -43,6 +43,13 @@ Codebench can be simply installed by running:
 pip install codebench
 ```
 
+If you want to install from a source distribution,
+extract the tarball and run the following command:
+
+```bash
+python setup.py install
+```
+
 ## Usage
 
 ### Command Line Interface
