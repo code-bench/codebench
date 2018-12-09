@@ -1,0 +1,3 @@
+git+https://github.com/coala/coala.git
+git+https://github.com/coala/coala-bears.git
+
