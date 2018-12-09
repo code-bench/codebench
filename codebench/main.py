@@ -33,6 +33,8 @@ def main():
     for commit in commits:
         try:
             git_handler.checkout(commit)
+            if args.before_each:
+                subprocess.call(args.before_each)
             r = Runner(start_script)
             r.run()
             reporter.add_result(commit, r.summary)
@@ -44,6 +46,8 @@ def main():
         # run benchmark using baseline commit
         try:
             git_handler.checkout(args.baseline)
+            if args.before_each:
+                subprocess.call(args.before_each)
             r = Runner(start_script)
             r.run()
             reporter.add_result('baseline', r.summary)

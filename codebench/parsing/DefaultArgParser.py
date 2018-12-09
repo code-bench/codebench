@@ -60,6 +60,10 @@ Empower developers with tools to trace and analyze project performances.
         '-b', '--before_all', type=PathArg, nargs=1,
         help='script that to be run before all')
 
+    before_group.add_argument(
+        '-e', '--before_each', type=PathArg, nargs=1,
+        help='script that to be run before each benchmark')
+
     start_group = arg_parser.add_argument_group('Script')
 
     start_group.add_argument(
