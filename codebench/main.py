@@ -14,11 +14,11 @@ def main():
     args = default_arg_parser().parse_args()
 
     # run the preparation script
-    if args.before is not None:
+    if args.before_all:
         # a blocking call to get prepared for benchmarking
-        subprocess.call(args.before)
+        subprocess.call(args.before_all)
 
-    start_script = args.start
+    start_script = args.script
 
     git_handler = GitHandler(args.git_folder)
 
