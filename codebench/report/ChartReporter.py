@@ -7,6 +7,7 @@ class ChartReporter(Reporter):
     """
     generate charts based on results
     """
+
     def generate_report(self):
         x_values = []
         cpu_usage = []

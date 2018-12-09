@@ -5,6 +5,7 @@ from codebench.performance.Runner import Runner
 from codebench.report.Factory import reporter_factory
 from codebench.GitHandler import GitHandler
 
+
 def reset_git_head(git_handler):
     git_handler.reset_head()
 

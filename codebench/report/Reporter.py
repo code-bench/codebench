@@ -2,6 +2,7 @@ class Reporter:
     """
     report benchmark results
     """
+
     def __init__(self):
         self.results = dict()
 
