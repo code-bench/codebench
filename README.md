@@ -7,6 +7,9 @@
 <p align="center"><b>Automated code benchmark solution.</b></p>
 <p align="center">Empower developers with tools to trace and analyze project performances.</p>
 
+[![Build Status](https://travis-ci.org/li-boxuan/tutoria.svg?branch=master)](https://travis-ci.org/li-boxuan/codebench)
+[![Pypi Package version](https://img.shields.io/pypi/v/codebench.svg)](https://pypi.org/project/codebench/)
+
 ## Introduction
 
 ### What is Codebench?
