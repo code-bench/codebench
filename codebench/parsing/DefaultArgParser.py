@@ -1,6 +1,7 @@
 import argparse
 import os
 
+
 class CustomFormatter(argparse.RawDescriptionHelpFormatter):
     """
     A Custom Formatter that will keep the metavars in the usage but remove them
@@ -51,7 +52,7 @@ Empower developers with tools to trace and analyze project performances.
 """
 
     arg_parser = argparse.ArgumentParser(
-        formatter_class = formatter_class,
+        formatter_class=formatter_class,
         description=description)
 
     before_group = arg_parser.add_argument_group('Before')

@@ -51,4 +51,4 @@ def main():
     reset_git_head(git_handler)
 
     if args.after_all:
-       subprocess.call(args.after_all)
+        subprocess.call(args.after_all)
