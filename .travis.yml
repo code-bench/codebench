@@ -1,20 +1,29 @@
 language: python
-python:
-  - 3.4
+
+stages:
+  - lint
+  - test
 
 cache:
   pip: true
 
-before_install:
-  - printf '%s\n'
-           "$(cat test-requirements.txt requirements.txt)"
-           > requirements.txt
-
-script:
-  - coala --non-interactive -V
+jobs:
+  include:
+    - stage: lint
+      python: 3.4
+      before_install:
+        - printf '%s\n'
+                 "$(cat test-requirements.txt requirements.txt)"
+                 > requirements.txt
+      script:
+        - coala --non-interactive -V
+    - stage: test
+      python:
+        - 2.7
+        - 3.4
+      script: python -m pytest
 
 notifications:
   email: false
   webhooks: https://www.travisbuddy.com/
   on_success: never
-
