@@ -38,6 +38,8 @@ def main():
             r = Runner(start_script)
             r.run()
             reporter.add_result(commit, r.summary)
+            if args.after_each:
+                subprocess.call(args.after_each)
         except Exception as e:
             reset_git_head(git_handler)
             raise e
@@ -51,9 +53,14 @@ def main():
             r = Runner(start_script)
             r.run()
             reporter.add_result('baseline', r.summary)
+            if args.after_each:
+                subprocess.call(args.after_each)
         except Exception as e:
             reset_git_head(git_handler)
             raise e
 
     reporter.generate_report()
     reset_git_head(git_handler)
+
+    if args.after_all:
+       subprocess.call(args.after_all)

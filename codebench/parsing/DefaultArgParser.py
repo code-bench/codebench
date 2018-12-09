@@ -70,6 +70,16 @@ Empower developers with tools to trace and analyze project performances.
         '-s', '--script', type=PathArg, nargs=1,
         required=True, help='benchmark script to be run')
 
+    after_group = arg_parser.add_argument_group('After')
+
+    after_group.add_argument(
+        '-a', '--after_all', type=PathArg, nargs=1,
+        help='script that to be run after all')
+
+    after_group.add_argument(
+        '-f', '--after_each', type=PathArg, nargs=1,
+        help='script that to be run after each benchmark')
+
     commits_group = arg_parser.add_argument_group('Commits')
 
     commits_group.add_argument(
