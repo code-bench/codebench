@@ -30,6 +30,9 @@ def main():
     else:
         commits = ['head']
 
+    if args.baseline:
+        commits.append(args.baseline)
+
     for commit in commits:
         try:
             git_handler.checkout(commit)
@@ -38,21 +41,6 @@ def main():
             r = Runner(start_script)
             r.run()
             reporter.add_result(commit, r.summary)
-            if args.after_each:
-                subprocess.call(args.after_each)
-        except Exception as e:
-            reset_git_head(git_handler)
-            raise e
-
-    if args.baseline:
-        # run benchmark using baseline commit
-        try:
-            git_handler.checkout(args.baseline)
-            if args.before_each:
-                subprocess.call(args.before_each)
-            r = Runner(start_script)
-            r.run()
-            reporter.add_result('baseline', r.summary)
             if args.after_each:
                 subprocess.call(args.after_each)
         except Exception as e:
