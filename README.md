@@ -8,6 +8,7 @@
 <p align="center">Empower developers with tools to trace and analyze project performances.</p>
 
 [![Build Status](https://travis-ci.org/li-boxuan/tutoria.svg?branch=master)](https://travis-ci.org/li-boxuan/codebench)
+[![codecov.io](https://img.shields.io/codecov/c/github/li-boxuan/codebench/master.svg?label=branch%20coverage)](https://codecov.io/github/li-boxuan/codebench?branch=master)
 [![Pypi Package version](https://img.shields.io/pypi/v/codebench.svg)](https://pypi.org/project/codebench/)
 
 ## Introduction
