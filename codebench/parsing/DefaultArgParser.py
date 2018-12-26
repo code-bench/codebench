@@ -98,8 +98,8 @@ Empower developers with tools to trace and analyze project performances.
     report_group = arg_parser.add_argument_group('Report')
 
     report_group.add_argument(
-        '-t', '--report_type', type=str,
+        '-t', '--report_types', type=str, nargs='+',
         choices=['chart'],
-        help='report type')
+        help='report types')
 
     return arg_parser
