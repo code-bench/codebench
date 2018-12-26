@@ -1,6 +1,7 @@
 import subprocess
 
 from codebench.parsing.DefaultArgParser import default_arg_parser
+from codebench.parsing.ConfParser import parse_config_args
 from codebench.performance.Runner import Runner
 from codebench.report.Factory import reporter_factory
 from codebench.GitHandler import GitHandler
@@ -12,6 +13,9 @@ def reset_git_head(git_handler):
 
 def main():
     args = default_arg_parser().parse_args()
+
+    if not args.no_config:
+        args = parse_config_args(args.config)
 
     # run the preparation script
     if args.before_all:

@@ -23,6 +23,7 @@ setuptools.setup(
         'GitPython',
         'psutil',
         'pyecharts',
+        'yaml',
     ],
     classifiers=[
         'Programming Language :: Python :: 2',

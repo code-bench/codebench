@@ -55,6 +55,16 @@ Empower developers with tools to trace and analyze project performances.
         formatter_class=formatter_class,
         description=description)
 
+    config_group = arg_parser.add_argument_group('Config')
+
+    config_group.add_argument(
+        '-C', '--config', type=PathArg, nargs=1,
+        help='configuration file location, defaults to .codebench.yml')
+
+    config_group.add_argument(
+        '-I', '--no_config', const=True, action='store_const',
+        help='run without using any config file')
+
     before_group = arg_parser.add_argument_group('Before')
 
     before_group.add_argument(
@@ -69,7 +79,7 @@ Empower developers with tools to trace and analyze project performances.
 
     start_group.add_argument(
         '-s', '--script', type=PathArg, nargs=1,
-        required=True, help='benchmark script to be run')
+        help='benchmark script to be run')
 
     after_group = arg_parser.add_argument_group('After')
 
