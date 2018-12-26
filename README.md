@@ -68,8 +68,8 @@ for details.
 A quick demo is demonstrated below:
 
 ```bash
-codebench --before ./before_script.sh --start ./benchmark.py \
---report_type chart --commits cb91b8 3cd96d bb1541
+codebench --script ./benchmark.py \
+--report_types chart --commits cb91b8 3cd96d bb1541
 ```
 
 ![memory_usage](https://user-images.githubusercontent.com/25746010/49643853-c0dffd80-fa51-11e8-8ffb-95da64347a41.png)
