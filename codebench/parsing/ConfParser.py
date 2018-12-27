@@ -1,6 +1,10 @@
 import yaml
 
 
+class ConfParseError(ValueError):
+    pass
+
+
 def parse_config_args(file=None):
     """
     This function parses configurations from yaml file
@@ -9,10 +13,9 @@ def parse_config_args(file=None):
     """
     if file is None:
         file = '.codebench.yml'
-    args = {}
     try:
         with open(file, 'r') as f:
-            args = yaml.safe_load(f)
+            return yaml.safe_load(f)
     except yaml.YAMLError as exc:
         print(exc)
-    return args
+        raise ConfParseError

@@ -1,9 +1,8 @@
 import subprocess
 
-from codebench.parsing.DefaultArgParser import default_arg_parser
-from codebench.parsing.ConfParser import parse_config_args
 from codebench.performance.Runner import Runner
 from codebench.report.Factory import reporter_factory
+from codebench.settings.Setting import get_setting
 from codebench.GitHandler import GitHandler
 
 
@@ -12,42 +11,39 @@ def reset_git_head(git_handler):
 
 
 def main():
-    args = default_arg_parser().parse_args()
-
-    if not args.no_config:
-        args = parse_config_args(args.config)
+    setting = get_setting()
 
     # run the preparation script
-    if args.before_all:
+    if setting.BEFORE_ALL:
         # a blocking call to get prepared for benchmarking
-        subprocess.call(args.before_all)
+        subprocess.call(setting.BEFORE_ALL)
 
-    start_script = args.script
+    start_script = setting.SCRIPT
 
-    git_handler = GitHandler(args.git_folder)
+    git_handler = GitHandler(setting.GIT_FOLDER)
 
-    reporters = reporter_factory(args.report_types)
+    reporters = reporter_factory(setting.REPORT_TYPES)
 
     # run benchmark on given commits or head
-    if args.commits:
-        commits = args.commits
+    if setting.COMMITS:
+        commits = setting.COMMITS
     else:
         commits = ['head']
 
-    if args.baseline:
-        commits.append(args.baseline)
+    if setting.BASELINE:
+        commits.append(setting.BASELINE)
 
     for commit in commits:
         try:
             git_handler.checkout(commit)
-            if args.before_each:
-                subprocess.call(args.before_each)
+            if setting.BEFORE_EACH:
+                subprocess.call(setting.BEFORE_EACH)
             r = Runner(start_script)
             r.run()
             for reporter in reporters:
                 reporter.add_result(commit, r.summary)
-            if args.after_each:
-                subprocess.call(args.after_each)
+            if setting.AFTER_EACH:
+                subprocess.call(setting.AFTER_EACH)
         except Exception as e:
             reset_git_head(git_handler)
             raise e
@@ -56,5 +52,5 @@ def main():
         reporter.generate_report()
     reset_git_head(git_handler)
 
-    if args.after_all:
-        subprocess.call(args.after_all)
+    if setting.AFTER_ALL:
+        subprocess.call(setting.AFTER_ALL)
