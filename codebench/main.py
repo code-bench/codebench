@@ -22,7 +22,7 @@ def main():
 
     git_handler = GitHandler(args.git_folder)
 
-    reporter = reporter_factory(args.report_type)
+    reporters = reporter_factory(args.report_types)
 
     # run benchmark on given commits or head
     if args.commits:
@@ -40,14 +40,16 @@ def main():
                 subprocess.call(args.before_each)
             r = Runner(start_script)
             r.run()
-            reporter.add_result(commit, r.summary)
+            for reporter in reporters:
+                reporter.add_result(commit, r.summary)
             if args.after_each:
                 subprocess.call(args.after_each)
         except Exception as e:
             reset_git_head(git_handler)
             raise e
 
-    reporter.generate_report()
+    for reporter in reporters:
+        reporter.generate_report()
     reset_git_head(git_handler)
 
     if args.after_all:
