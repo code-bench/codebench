@@ -1,4 +1,4 @@
 GitPython
 psutil
 pyecharts
-yaml
+pyyaml
