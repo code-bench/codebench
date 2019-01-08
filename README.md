@@ -60,6 +60,12 @@ python setup.py install
 
 Codebench provides a command line interface. Run `codebench -h` for details.
 
+### Configuration File
+
+Tired of typing command in CLI? Write a configuration file in yaml format!
+Take a look at a sample configuration file, or run `codebench --init` to
+help you generate one for your project.
+
 ### Sample
 
 See [codebench-sample](https://github.com/li-boxuan/codebench-sample)
@@ -71,6 +77,9 @@ A quick demo is demonstrated below:
 codebench --script ./benchmark.py \
 --report_types chart --commits cb91b8 3cd96d bb1541
 ```
+
+You may also run `codebench` directly in the root directory of sample project, since it has a `.codebench.yml` file in the root directory.
+
 
 ![memory_usage](https://user-images.githubusercontent.com/25746010/49643853-c0dffd80-fa51-11e8-8ffb-95da64347a41.png)
 ![elapsed_time](https://user-images.githubusercontent.com/25746010/49643851-c0476700-fa51-11e8-8014-064c666336e7.png)
